@@ -8,6 +8,7 @@ class Donation {s
   }
   toString () {
     let when = this.when.toLocaleDateString() 
-    return `Has blood group <${this.bloodGroup}> donated on ${this.when} at ${this.branchName}`
+    return `Has blood group <${this.bloodGroup}> donated on ${when} at ${this.branchName}`
+    // return `Has blood group <${this.bloodGroup}> donated on ${when} at ${this.branchName}`
   }
 }

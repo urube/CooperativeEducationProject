@@ -87,7 +87,7 @@ describe('Question Seven', () => {
       })
 
       it('should NOT be hard coded', () => {
-        expect(donation.toString()).to.be.equal('Has blood group <bloodGroup> donated on ' + (new Date(2019, 5, 15)) + ' at branchName')
+        expect(donation.toString()).to.be.equal('Has blood group <bloodGroup> donated on 15/06/2019 at branchName')
       })
       
       it('toString function should return', () => {
@@ -190,7 +190,7 @@ describe('Question Seven', () => {
           })
 
           it('should display donation date', () => {
-            expect(output).to.match('01/12/2018')
+            expect(output).to.match(new RegExp('01/12/2018'))
           })
     
           it('should be a single space', () => {
@@ -299,7 +299,7 @@ describe('Question Seven', () => {
         })
 
         it('should display donation date', () => {
-          expect(output).to.match(new Date(2017, 10, 9))
+          expect(output).to.match(new RegExp("9/11/2017"))
         })
         
         it('should be a single space', () => {
@@ -363,7 +363,7 @@ describe('Question Seven', () => {
         })
 
         it('should display donation date', () => {
-          expect(output).to.match(new Date(2018, 9, 5))
+          expect(output).to.match(new RegExp('05/10/2018')) 
         })
         
         it('should be a single space', () => {
@@ -393,12 +393,12 @@ describe('Question Seven', () => {
       var theBloodBank = Controller.setup()
       expect(theBloodBank.displayPositiveDonations()).to.be.equal(
         'Moore, Sandy [F]\n'
-        + '\tHas blood group <AB+> donated on ' + (new Date(2018, 11, 1)) + ' at Christchurch\n'
+        + '\tHas blood group <AB+> donated on 01/12/2018 at Christchurch\n'
         + 'Watson, Cathy [F]\n'
-        + '\tHas blood group <O+> donated on ' + (new Date(2019, 6, 15)) + ' at Auckland\n'
+        + '\tHas blood group <O+> donated on 15/07/2019 at Auckland\n'
         + 'Watts, Jonathan [M]\n'
-        + '\tHas blood group <AB+> donated on ' + (new Date(2017, 10, 9)) + ' at Nelson\n'
-        + '\tHas blood group <AB+> donated on ' + (new Date(2018, 9, 5)) + ' at Otago\n'
+        + '\tHas blood group <AB+> donated on 09/11/2017 at Nelson\n'
+        + '\tHas blood group <AB+> donated on 05/10/2018 at Otago\n'
       )
     })
   })
