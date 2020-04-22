@@ -5,30 +5,32 @@ from datetime import date
 
 
 class TestActivityProperties:
+    def setup_class(self):
+        self.activity = Activity('name', 'place', 'start_date', 'cost')
 
     def test_a_activity_name(self):
-        activity = Activity('name', 'place', 'start_date', 'cost')
-        assert (hasattr(activity, 'name'))
-        assert activity.name, 'name'
+        # activity = Activity('name', 'place', 'start_date', 'cost')
+        assert (hasattr(self.activity, 'name'))
+        assert self.activity.name, 'name'
 
     def test_b_activity_place(self):
-        activity = Activity('name', 'place', 'start_date', 'cost')
-        assert (hasattr(activity, 'place'))
-        assert activity.place, 'place'
+        # activity = Activity('name', 'place', 'start_date', 'cost')
+        assert (hasattr(self.activity, 'place'))
+        assert self.activity.place, 'place'
 
     def test_c_activity_start_date(self):
-        activity = Activity('name', 'place', 'start_date', 'cost')
-        assert (hasattr(activity, 'start_date'))
-        assert activity.start_date, 'start_date'
+        # activity = Activity('name', 'place', 'start_date', 'cost')
+        assert (hasattr(self.activity, 'start_date'))
+        assert self.activity.start_date, 'start_date'
 
     def test_d_activity_cost(self):
-        activity = Activity('name', 'place', 'start_date', 'cost')
-        assert (hasattr(activity, 'cost'))
-        assert activity.cost, 'cost'
+        # activity = Activity('name', 'place', 'start_date', 'cost')
+        assert (hasattr(self.activity, 'cost'))
+        assert self.activity.cost, 'cost'
 
     def test_e_activity_has_constructor_named_properly(self):
-        activity = Activity('name', 'place', 'start_date', 'cost')
-        actual = set(activity.__dict__)
+        # activity = Activity('name', 'place', 'start_date', 'cost')
+        actual = set(self.activity.__dict__)
         expected = {'name', 'place', 'start_date', 'cost'}
         actual.difference(expected)
         assert expected, actual
