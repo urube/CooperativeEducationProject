@@ -1,6 +1,7 @@
 import pytest
 import controller
 from donor import Donor
+import re
 
 
 class TestDonorStr:
@@ -31,44 +32,44 @@ class TestBloodBankDisplayDonors:
     def test_e_club_display_last_name(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
-        expected = r'Moore.*\nMcDonald.*\nWatson.*\nBurk.*\nWatts.*\n'
-        assert returned, expected
+        expected = r'^Moore.*\nMcDonald.*\nWatson.*\nBurk.*\nWatts.*\n'
+        assert re.search(expected, returned)
 
     def test_f_club_display_punctuation_after_last_name(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
         expected = r'[,]'
-        assert returned == expected
+        assert re.search(expected, returned)
 
     def test_g_club_display_space_after_punctuation(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
         expected = r'[,\s]'
-        assert returned, expected
+        assert re.search(expected, returned)
 
     def test_h_club_display_first_name(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
         expected = r'.*Sandy.*\n.*Daniel.*\n.*Cathy.*\n.*John.*\n.*Jonathan.*'
-        assert returned, expected
+        assert re.search(expected, returned)
 
     def test_i_club_display_space_after_first_name(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
-        expected = r'[\.\s]'
-        assert returned, expected
+        expected = r'[,\s]'
+        assert re.search(expected, returned)
 
     def test_j_club_display_ids(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
-        expected = r'[.]'
-        assert returned, expected
+        expected = r'[F]'
+        assert re.search(expected, returned)
 
     def test_k_club_end_line(self):
         blood_bank = controller.setup()
         returned = blood_bank.display_donor()
         expected = r'\n'
-        assert returned, expected
+        assert re.search(expected, returned)
 
 
 if __name__ == '__main__':
