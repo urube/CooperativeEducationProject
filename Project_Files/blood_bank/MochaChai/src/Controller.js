@@ -37,7 +37,7 @@ class Controller {
     aDonor.addDonation('Auckland', 'Manuka', new Date(2019, 6, 15), 'O+')
     
     aDonor = theBloodBank.findDonor(7906553)
-    aDonor.addDonation('North Shore', 'Tahunanui', new Date(2016, 11, 9), 'B-')
+    aDonor.addDonation('North Shore', 'Takapuna', new Date(2016, 11, 9), 'B-')
     
     aDonor = theBloodBank.findDonor(9800100)
     aDonor.addDonation('Nelson', 'Tahunanui', new Date(2017, 10, 9), 'AB+')
