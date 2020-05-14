@@ -5,17 +5,23 @@ import re
 
 
 class TestMemberStr:
-    def test_a_display_member__str__exists(self):
+
+    @pytest.fixture(scope='session')
+    def set_data(self):
         member = Member('id', 'first_name', 'last_name', 'birth_date')
+        return member
+
+    def test_a_display_member__str__exists(self, set_data):
+        member = set_data
         assert type(member).__str__ is not object.__str__
 
-    def test_b_display_member__str__returns_string(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_b_display_member__str__returns_string(self, set_data):
+        member = set_data
         returned = str(member)
         assert isinstance(returned, str)
 
-    def test_c_display_member__str__works(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_c_display_member__str__works(self, set_data):
+        member = set_data
         returned = str(member)
         assert returned == 'last_name, first_name [id]'
 

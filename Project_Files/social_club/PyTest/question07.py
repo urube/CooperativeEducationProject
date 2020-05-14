@@ -30,57 +30,81 @@ class TestClubDisplayBusyMembers:
 
 
 class TestClubDisplayMembers:
-    def test_bx_display_member__str__exists(self):
+
+    @pytest.fixture(scope='session')
+    def set_data(self):
         member = Member('id', 'first_name', 'last_name', 'birth_date')
+        return member
+
+    def test_bx_display_member__str__exists(self, set_data):
+        member = set_data
         assert type(member).__str__ is not object.__str__
 
-    def test_by_display_member__str__returns_string(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_by_display_member__str__returns_string(self, set_data):
+        member = set_data
         returned = str(member)
         assert isinstance(returned, str)
 
-    def test_bz_display_member__str__works(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_bz_display_member__str__works(self, set_data):
+        member = set_data
         returned = str(member)
         assert returned == 'last_name, first_name [id]'
 
 
 class TestMemberHasManyActivities:
-    def test_yx_member_has_many_activities_exists(self):
+
+    @pytest.fixture(scope='session')
+    def set_data(self):
         member = Member('id', 'first_name', 'last_name', 'birth_date')
+        return member
+
+    def test_yx_member_has_many_activities_exists(self, set_data):
+        member = set_data
         assert hasattr(member, 'has_many_activities')
         assert callable(getattr(member, 'has_many_activities', None))
 
-    def test_yy_has_many_activities_returns_false_with_zero_activity(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_yy_has_many_activities_returns_false_with_zero_activity(self, set_data):
+        member = set_data
         returned = member.has_many_activities()
         assert returned == False
 
 
 class TestMemberHasGetActivities:
-    def test_za_member_has_get_activities_exists(self):
+
+    @pytest.fixture(scope='session')
+    def set_data(self):
         member = Member('id', 'first_name', 'last_name', 'birth_date')
+        return member
+
+    def test_za_member_has_get_activities_exists(self, set_data):
+        member = set_data
         assert hasattr(member, 'get_activities')
         assert callable(getattr(member, 'get_activities', None))
 
-    def test_zb_member_has_get_activities_str_returns_string(self):
-        member = Member('id', 'first_name', 'last_name', 'birth_date')
+    def test_zb_member_has_get_activities_str_returns_string(self, set_data):
+        member = set_data
         returned = member.get_activities()
         assert isinstance(returned, str)
 
 
 class TestActivityStr:
-    def test_cx_activity__str__exists(self):
+
+    @pytest.fixture(scope='session')
+    def set_data(self):
         activity = Activity('name', 'place', date(2019, 5, 14), 'cost')
+        return activity
+
+    def test_cx_activity__str__exists(self, set_data):
+        activity = set_data
         assert type(activity).__str__ is not object.__str__
 
-    def test_cy_activity_not_hard_coded(self):
-        activity = Activity('name', 'place', date(2019, 5, 14), 'cost')
+    def test_cy_activity_not_hard_coded(self, set_data):
+        activity = set_data
         returned = str(activity)
         assert returned == 'name starts on 05/14/19 at place'
 
-    def test_cz_activity__str__works(self):
-        activity = Activity('name', 'place', date(2019, 5, 14), 'cost')
+    def test_cz_activity__str__works(self, set_data):
+        activity = set_data
         returned = str(activity)
         assert returned == 'name starts on 05/14/19 at place'
 

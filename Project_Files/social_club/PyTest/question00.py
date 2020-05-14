@@ -1,6 +1,7 @@
 import pytest
 from club import Club
 from member import Member
+from datetime import date
 
 
 class TestStaringClubCode:
@@ -28,8 +29,13 @@ class TestStaringClubCode:
 
 class TestStaringMemberCode:
 
-    def test_e_member_properties(self):
-        member = Member('1', 'A', 'B', 2)
+    @pytest.fixture(scope='session')
+    def set_data(self):
+        member = Member('1', 'A', 'B', date(2020, 1, 1))
+        return member
+
+    def test_e_member_properties(self, set_data):
+        member = set_data
         assert hasattr(member, 'id')
         assert hasattr(member, 'first_name')
         assert hasattr(member, 'last_name')
@@ -37,8 +43,8 @@ class TestStaringMemberCode:
         assert hasattr(member, 'all_my_activities')
         assert type(member.all_my_activities) == list
 
-    def test_f_member_methods(self):
-        member = Member('1', 'A', 'B', 2)
+    def test_f_member_methods(self, set_data):
+        member = set_data
         assert hasattr(member, 'sort_activities')
         assert callable(getattr(member, 'sort_activities', None))
 
